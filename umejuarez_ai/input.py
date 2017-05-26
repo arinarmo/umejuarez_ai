@@ -9,14 +9,18 @@ from .state import State
 class Frame(object):
     def __init__(self, matrix, borders=None):
         self.original_matrix = matrix
+
         if borders is None:
             self.borders = self.find_borders(matrix)
+        else:
+            self.borders = borders
+
         self.frame = self.crop()
 
     def find_borders(self, matrix, color_thresh=0):
         # Frame is stretched so we either have black rows, black columns, or neither
         color_sum = matrix.sum(axis=2)
-        m, n = matrix.shape
+        m, n, _ = matrix.shape
 
         if color_sum[0].sum() > color_thresh:
             # If first row is non-black, we have some black columns and no black rows
@@ -35,7 +39,7 @@ class Frame(object):
                     break
             rows_border = (i, m-i)
 
-        if rows_border[0] > m/2 or columns_border > n/2:
+        if rows_border[0] > m/2 or columns_border[0] > n/2:
             logging.warning("Frame is black or malformed, assuming perfect fit")
             borders = None
         else:
