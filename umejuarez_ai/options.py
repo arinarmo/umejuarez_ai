@@ -2,12 +2,12 @@ from pykeyboard import PyKeyboard
 k = PyKeyboard()
 
 BUTTONS = {
-    "LP": 'A',
-    "MP": "S",
-    "HP": "D",
-    "LK": "Z",
-    "MK": "X",
-    "HK": "C",
+    "LP": 'a',
+    "MP": "s",
+    "HP": "d",
+    "LK": "z",
+    "MK": "x",
+    "HK": "c",
     "L": k.left_key,
     "R": k.right_key,
     "U": k.up_key,

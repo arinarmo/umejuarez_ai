@@ -41,3 +41,29 @@ class State(object):
             State.instance = State.__State(update_dict)
         else:
             State.instance.update(update_dict)
+
+    def get_stance(self):
+        own = self.instance._value["own"]
+        if "stance" in own:
+            return own["stance"]
+        else:
+            return None
+
+    def get_action(self):
+        own = self.instance._value["own"]
+        if "action" in own:
+            return own["stance"]
+        else:
+            return None
+
+    def acting(self):
+        own = self.instance._value["own"]
+        return "acting" in own and own["acting"]
+
+    def get_own_health(self):
+        own = self.instance._value["own"]
+        return own["health"]
+
+    def get_enemy_health(self):
+        enemy = self.instance.value["enemy"]
+        return enemy["health"]
